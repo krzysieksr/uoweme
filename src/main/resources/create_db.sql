@@ -1,0 +1,5 @@
+CREATE USER uoweme_user WITH PASSWORD :passwd SUPERUSER CREATEROLE CREATEDB;
+
+CREATE DATABASE uoweme_db;
+
+GRANT ALL ON DATABASE uoweme_db TO uoweme_user;
