@@ -4,12 +4,12 @@ version=$(psql --version)
 
 if [[ $version != *"PostgreSQL"* ]]; then
 	sudo apt-get update
-	sudo apt-get install postgresql postgresql-contrib
+	sudo apt-get -y install postgresql postgresql-contrib
 fi
 
 passwd="'dupa'"
 
-psql -f src/main/resources/create_db.sql -v passwd=$passwd postgres
+sudo -u postgres psql -f src/main/resources/create_db.sql -v passwd=$passwd postgres
 
 echo "Exelent, database created!"
 
