@@ -1,16 +1,18 @@
 package com.dev.training.uownme.common.domain;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
 @NoArgsConstructor
 public class User {
 
@@ -27,6 +29,23 @@ public class User {
     private Date lastLogin;
     private Date updated;
 
+    @ManyToMany
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "debtor")
+    private Set<Balance> balanceSet = new HashSet<>();
+
+    public User(String userName, String password, String firstName, String surname, String mail) {
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.mail = mail;
+    }
+
     @PrePersist
     protected void onCreate() {
         created = new Date();
@@ -37,15 +56,4 @@ public class User {
         updated = new Date();
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "debtor")
-    private Set<Balance> balanceSet = new HashSet<>();
-
-
-    public User(String userName, String password, String firstName, String surname, String mail) {
-        this.userName = userName;
-        this.password = password;
-        this.firstName = firstName;
-        this.surname = surname;
-        this.mail = mail;
-    }
 }
