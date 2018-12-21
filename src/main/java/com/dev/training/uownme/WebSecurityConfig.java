@@ -34,23 +34,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
-
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(encoder());
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/registration").permitAll()
+                .antMatchers("/registration").permitAll()
+                .antMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+                .antMatchers("/login*").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .formLogin().loginPage("/login").permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                .logout().permitAll();
     }
-
 }
