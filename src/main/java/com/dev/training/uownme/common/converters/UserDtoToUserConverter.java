@@ -7,7 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDtoToUserConverter implements Converter<UserDto, User> {
+public class
+UserDtoToUserConverter implements Converter<UserDto, User> {
 
     private final PasswordEncoder passwordEncoder;
 
@@ -18,12 +19,13 @@ public class UserDtoToUserConverter implements Converter<UserDto, User> {
     @Override
     public User convert(UserDto accountDto) {
         User user = new User();
-
-        user.setUserName(accountDto.getUserName());
-        user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
-        user.setFirstName(accountDto.getFirstName());
-        user.setSurname(accountDto.getSurname());
-        user.setMail(accountDto.getMail());
+        if (accountDto != null) {
+            user.setUserName(accountDto.getUserName());
+            user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
+            user.setFirstName(accountDto.getFirstName());
+            user.setSurname(accountDto.getSurname());
+            user.setMail(accountDto.getMail());
+        }
         return user;
     }
 }

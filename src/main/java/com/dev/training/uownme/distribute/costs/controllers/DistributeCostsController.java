@@ -1,5 +1,6 @@
 package com.dev.training.uownme.distribute.costs.controllers;
 
+import com.dev.training.uownme.common.UserValidator;
 import com.dev.training.uownme.common.domain.User;
 import com.dev.training.uownme.common.dto.UserDto;
 import com.dev.training.uownme.common.repositories.UserRepository;
@@ -23,13 +24,15 @@ public class DistributeCostsController {
     private final UserRepository userRepository;
     private final UserService userService;
     private final SecurityService securityService;
+    private final UserValidator userValidator;
 
     public DistributeCostsController(UserRepository userRepository,
                                      UserService userService,
-                                     SecurityService securityService) {
+                                     SecurityService securityService, UserValidator userValidator) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.securityService = securityService;
+        this.userValidator = userValidator;
     }
 
 
@@ -49,15 +52,14 @@ public class DistributeCostsController {
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") @Valid UserDto userForm,
-                               BindingResult bindingResult,
-                               Model model) {
+                               BindingResult bindingResult) {
         //TODO
-//        userValidator.validate(userForm, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "registration";
-//        }
-//
+        userValidator.validate(userForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+
         userService.registerNewUserAccount(userForm);
 
         securityService.autoLogin(userForm.getUserName(), userForm.getPassword());

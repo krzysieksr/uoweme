@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,12 +29,13 @@ public class User {
     private Date created;
     private Date lastLogin;
     private Date updated;
+    private Boolean enabled = true;
 
     @ManyToMany
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Collection<Role> roles;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "debtor")
     private Set<Balance> balanceSet = new HashSet<>();

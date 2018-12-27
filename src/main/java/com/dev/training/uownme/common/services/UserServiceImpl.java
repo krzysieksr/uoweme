@@ -8,7 +8,7 @@ import com.dev.training.uownme.common.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+import java.util.Arrays;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,15 +29,23 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User registerNewUserAccount(UserDto accountDto) {
         final User user = userDtoToUserConverter.convert(accountDto);
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
         //TODO
-//        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
+        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
         return userRepository.save(user);
     }
 
     @Override
     public User findUserByUserName(String username) {
         return userRepository.findByUserName(username);
+    }
+
+    //TODO
+    private boolean existUserName(String userName) {
+        return userRepository.findByUserName(userName) != null;
+    }
+
+    private boolean existEmail(String mail) {
+        return userRepository.findByMail(mail) != null;
     }
 
 }
