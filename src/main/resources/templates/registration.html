@@ -21,51 +21,84 @@
     <div>
         <form class="form-horizontal" th:object="${userForm}" th:action="@{/registration}" method="POST">
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">User name:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{userName}"/>
-                    <li th:each="err : ${#fields.errors('userName')}" th:text="${err}"/>
+            <div class="form-group" th:class="${#fields.hasErrors('userName')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">User Name:</label>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control" th:field="*{userName}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('userName')}" th:text="${err}"/>
+                       </ul>
+                    </span>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" th:class="${#fields.hasErrors('mail')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Email:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{mail}"/>
-                    <li th:each="err : ${#fields.errors('mail')}" th:text="${err}"/>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control" th:field="*{mail}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('mail')}" th:text="${err}"/>
+                       </ul>
+                    </span>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" th:class="${#fields.hasErrors('password')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Password:</label>
-                <div class="col-sm-10">
-                    <input type="password" name="password" class="form-control"/>
-                    <li th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
-                    <li th:each="err : ${#fields.errors('passwordConfirm')}" th:text="${err}"/>
+                <div class="col-sm-10 ">
+                    <input type="password" class="form-control" th:field="*{password}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
+                       </ul>
+                    </span>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group"
+                 th:class="${#fields.hasErrors('passwordConfirm')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Confirm password:</label>
                 <div class="col-sm-10">
-                    <input type="password" name="passwordConfirm" class="form-control"/>
-                    <li th:each="err : ${#fields.errors('passwordConfirm')}" th:text="${err}"/>
+                    <input type="password" class="form-control" th:field="*{passwordConfirm}"
+                           th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('passwordConfirm')}" th:text="${err}"/>
+                       </ul>
+                    </span>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group"
+                 th:class="${#fields.hasErrors('firstName')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">First Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{firstName}"/>
-                    <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"/>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control" th:field="*{firstName}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"/>
+                       </ul>
+                    </span>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Last Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{surname}"/>
-                    <li th:each="err : ${#fields.errors('surname')}" th:text="${err}"/>
+
+            <div class="form-group" th:class="${#fields.hasErrors('surname')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Surname:</label>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control" th:field="*{surname}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('surname')}" th:text="${err}"/>
+                       </ul>
+                    </span>
                 </div>
             </div>
 
