@@ -14,19 +14,23 @@ public class UserDto {
     private String userName;
 
     @NotNull
+    @Size(min = 1, message = "{NotNull.userDto.mail}")
+    @Email(message = "{Email.userDto.mail}")
+    private String mail;
+
+    @NotNull
     @Size(min = 8, message = "{Size.userForm.password}")
     private String password;
 
+    @NotNull
+    private String passwordConfirm;
+
+    //TODO
     @NotNull
     private String firstName;
 
     @NotNull
     private String surname;
-
-    @NotNull
-    @Size(min = 1, message = "{NotNull.userDto.mail}")
-    @Email(message = "{Email.userDto.mail}")
-    private String mail;
 
 
 }
