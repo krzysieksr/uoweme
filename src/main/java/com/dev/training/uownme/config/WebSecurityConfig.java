@@ -1,4 +1,4 @@
-package com.dev.training.uownme;
+package com.dev.training.uownme.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

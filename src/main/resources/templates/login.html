@@ -20,14 +20,14 @@
         <div class="col-md-5 col-md-offset-4">
             <h2>Login</h2>
             <div>
-                <form class="form-horizontal" th:object="${loginForm}" th:action="@{/login}" method="post">
+                <form class="form-horizontal" th:object="${loginForm}" th:action="@{/login}" method="POST">
 
                     <div th:if="${param.error}" class="alert alert-danger">
                         <p>Invalid username or password.</p>
                     </div>
 
                     <div th:if="${param.logout}" class="alert alert-success">
-                        <p>You've been logged out.</p>
+                        <p>You have been logged out.</p>
                     </div>
 
                     <div class="form-group" th:class="${param.error} ? 'form-group has-error' : 'form-group'">

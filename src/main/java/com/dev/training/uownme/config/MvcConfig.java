@@ -1,4 +1,4 @@
-package com.dev.training.uownme;
+package com.dev.training.uownme.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Configuration;
