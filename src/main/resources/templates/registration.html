@@ -21,59 +21,45 @@
     <div>
         <form class="form-horizontal" th:object="${userForm}" th:action="@{/registration}" method="POST">
 
-            <div th:if="${param.error}" class="alert alert-danger">
-                <p>Invalid username or password.</p>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">User name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{userName}"/>
+                    <li th:each="err : ${#fields.errors('userName')}" th:text="${err}"/>
+                </div>
             </div>
 
-            <!--<div class="form-group"  th:class="${#fields.hasErrors('userName')} ? 'form-group has-error' : 'form-group'">-->
-            <!--<div th:if="{#fields.hasErrors('passwordConfim')}">-->
-            <label class="col-sm-2 control-label">User Name:</label>
-            <div class="col-sm-10 ">
-                <input type="text" class="form-control" th:field="*{userName}" th:errorclass="has-error"/>
-
-                <span class="help-block">
-                       <ul>
-                           <li th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">User name error</li>
-                           <!--<li th:each="err : ${#fields.errors('userName')}" th:text="${err}" />-->
-                       </ul>
-                    </span>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{mail}"/>
+                    <li th:each="err : ${#fields.errors('mail')}" th:text="${err}"/>
+                </div>
             </div>
-            <!--</div>-->
-            <!--<input type="hidden" th:field="*{id}"/>-->
-            <!--<input type="hidden" th:field="*{version}"/>-->
-            <!--<input type="hidden" th:field="*{customer.id}"/>-->
-            <!--&lt;!&ndash;<input type="hidden" th:field="*{customer.version}"/>&ndash;&gt;-->
-            <!--<div class="form-group" th:class="${param.error} ? 'form-group has error' : 'form-group'">-->
-            <!--<label class="col-sm-2 control-label">Username:</label>-->
-            <!--<div class="col-sm-10">-->
-            <!--<input type="text" class="form-control" th:field="*{userName}"/>-->
-            <!--</div>-->
-            <!--</div>-->
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Password:</label>
                 <div class="col-sm-10">
                     <input type="password" name="password" class="form-control"/>
+                    <li th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 control-label">First Name:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{firstName}"/>
+                    <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Last Name:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{surname}"/>
+                    <li th:each="err : ${#fields.errors('surname')}" th:text="${err}"/>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Email:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{mail}"/>
-                </div>
-            </div>
+
             <div class="row">
                 <button type="submit" class="btn btn-default">Submit</button>
             </div>

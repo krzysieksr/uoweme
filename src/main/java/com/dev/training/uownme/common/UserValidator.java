@@ -23,20 +23,19 @@ public class UserValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        UserDto user= (UserDto) o;
+        UserDto user = (UserDto) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "NotEmpty");
-        if (user.getUserName().length() < 6 || user.getUserName().length() > 32) {
-            errors.rejectValue("userName", "Size.userForm.userName","Passwords Don't Match");
-        }
         if (userRepository.findByUserName(user.getUserName()) != null) {
             errors.rejectValue("userName", "Duplicate.userForm.userName");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", "Size.userForm.password");
+        if (userRepository.findByMail(user.getMail()) != null) {
+            errors.rejectValue("mail", "Duplicate.userForm.mail");
         }
+
+        //TODO
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Size.userForm.password");
+
 
         //TODO
 //        if (!user.getPasswordConfirm().equals(user.getPassword())) {
