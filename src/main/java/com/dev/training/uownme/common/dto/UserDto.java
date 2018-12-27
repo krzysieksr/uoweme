@@ -10,11 +10,11 @@ import javax.validation.constraints.Size;
 public class UserDto {
 
     @NotNull
-    @Size(min = 6, max = 32)
+    @Size(min = 6, max = 32, message = "{Size.userForm.userName}")
     private String userName;
 
     @NotNull
-    @Size(min = 8)
+    @Size(min = 8, message = "{Size.userForm.password}")
     private String password;
 
     @NotNull
