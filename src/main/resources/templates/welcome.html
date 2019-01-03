@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Welcome</title>
@@ -17,7 +17,10 @@
 <body>
 <div class="container">
 
-    <h2>Welcome my friend! | <a href="/logout">Sign Out</a></h2>
+    <h2>Welcome
+        <tr sec:authentication="principal.username"></tr>
+    </h2>
+    <a href="/logout">Sign Out</a></h2>
 
 </div>
 </body>
