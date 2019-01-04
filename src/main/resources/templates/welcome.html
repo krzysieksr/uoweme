@@ -16,6 +16,9 @@
 </head>
 <body>
 <div class="container">
+    <input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
 
     <h2>Welcome
         <tr sec:authentication="principal.username"></tr>
