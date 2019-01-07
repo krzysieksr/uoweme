@@ -7,8 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -38,7 +36,7 @@ public class User {
     private Collection<Role> roles;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "debtor")
-    private Set<Balance> balanceSet = new HashSet<>();
+    private Collection<Balance> balanceSet;
 
     public User(String userName, String password, String firstName, String surname, String mail) {
         this.userName = userName;
