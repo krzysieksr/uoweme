@@ -80,9 +80,9 @@ public class DistributeCostsController {
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @GetMapping({"/"})
     public String welcome(Model model, Principal principal) {
-        System.out.println(principal.getName());
-        return "welcome";
+        log.info(principal.getName()+" approched index page");
+        return "index";
     }
 }
